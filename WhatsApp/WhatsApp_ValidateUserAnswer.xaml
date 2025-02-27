@@ -1,0 +1,528 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="WhatsApp_ValidateUserAnswer" this:WhatsApp_ValidateUserAnswer.in_CountryCode="57" this:WhatsApp_ValidateUserAnswer.in_User_Tel_Number="3226434085" this:WhatsApp_ValidateUserAnswer.in_StrMessageSent="Hi Karen! 🌟 &#xA;I hope you're having a wonderful day! I'm Travel Safe Bot, here to introduce you to Travel Safe, your trusted partner for comprehensive travel insurance. Whether you're planning a relaxing vacation, an adventurous trip, or a business journey, having peace of mind is essential. &#xA;At Travel Safe, we offer a range of travel insurance plans designed to cover all your needs: &#xA;Medical Emergencies: Coverage for unexpected medical expenses, ensuring you get the best care without worrying about costs. &#xA;Trip Cancellations: Protects your investment if plans change unexpectedly. &#xA;Lost Luggage: Helps replace essential items if your luggage is lost or delayed. &#xA;Travel Disruptions: Covers flight delays and other unexpected issues that might disrupt your travel plans. &#xA;We pride ourselves on offering flexible insurance plans tailored to your specific needs, with personalized support every step of the way. &#xA;Karen, would you be interested in getting a quick quotation for our services? Just confirm in this communication channel, and we will provide more information. Additionally, we can schedule a call to discuss how our insurance can specifically protect you during your trips, in case you prefer a more detailed conversation. &#xA;Looking forward to helping you travel with confidence and security! &#xA;Safe travels, Travel Safe Bot🌍✈️" this:WhatsApp_ValidateUserAnswer.in_StrTimeMessageSent="2025-02-16 20:45" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_CountryCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_User_Tel_Number" Type="InArgument(x:String)" />
+    <x:Property Name="in_DBConnection" Type="InArgument(ui:DatabaseConnection)" />
+    <x:Property Name="in_StrMessageSent" Type="InArgument(x:String)" />
+    <x:Property Name="out_BooObtainedAnswer" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="in_StrTimeMessageSent" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrCustomerId" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>WhatsApp_ValidateUserAnswer_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="WhatsApp_ValidateUserAnswer" sap:VirtualizedContainerService.HintSize="1154,3279" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="StrExtractedDate" />
+      <Variable x:TypeArguments="x:String" Name="StrConversationDate" />
+      <Variable x:TypeArguments="x:String" Name="MessageContent" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Response" />
+      <Variable x:TypeArguments="x:String" Name="StrExtractedConversation" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="574,3256" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Default="[&quot;https://web.whatsapp.com/send?phone=&quot;+in_CountryCode+in_User_Tel_Number+&quot;&amp;text=&quot;+StrTextMessage]" Name="Str_SendMessage" />
+        <Variable x:TypeArguments="x:String" Default="https://web.whatsapp.com/send?" Name="Str_WhatsApp_URL" />
+        <Variable x:TypeArguments="x:String" Default="[&quot;+&quot;+in_CountryCode+in_User_Tel_Number]" Name="StrCompletePhoneNumber" />
+        <Variable x:TypeArguments="x:String" Name="StrTextMessage">
+          <Variable.Default>
+            <Literal x:TypeArguments="x:String" Value="" />
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="MatchesResult" />
+        <Variable x:TypeArguments="x:String" Name="MessageType" />
+        <Variable x:TypeArguments="x:String" Name="MessageTime" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message init" sap:VirtualizedContainerService.HintSize="540,124" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started WhatsApp_ValidateUserAnswer workflow&quot;]" />
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="540,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,196" sap2010:WorkflowViewState.IdRef="Sequence_37">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WhatsAppOpenUserConversation workflow" sap:VirtualizedContainerService.HintSize="416,136" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="WhatsApp\WhatsAppOpenUserConversation.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_CountryCode">[in_CountryCode]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_User_Tel_Number">[in_User_Tel_Number]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrThrowException">Could not load user conversation</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_StrTextMessage">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'WhatsApp Page'" sap:VirtualizedContainerService.HintSize="540,409" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="9adf993adf67fe92a8a3d14ad957ef1c" Selector="&lt;html app='chrome.exe' title='*WhatsApp*' /&gt;">
+        <ui:BrowserScope.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,190" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetFullText DisplayName="Get Full Text Conversation text" sap:VirtualizedContainerService.HintSize="416,130" sap2010:WorkflowViewState.IdRef="GetFullText_1" IgnoreHidden="False">
+                <ui:GetFullText.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="52d0d4ce-0eae-4822-9f1a-f700c069e12f" InformativeScreenshot="28b6e3df18df0022041157c08589f599" Selector="&lt;webctrl parentid='main' tabindex='0' tag='DIV' idx='1' /&gt;" WaitForReady="COMPLETE">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                  </ui:Target>
+                </ui:GetFullText.Target>
+                <ui:GetFullText.Text>
+                  <OutArgument x:TypeArguments="x:String">[StrExtractedConversation]</OutArgument>
+                </ui:GetFullText.Text>
+              </ui:GetFullText>
+            </Sequence>
+          </ActivityAction>
+        </ui:BrowserScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:BrowserScope>
+      <ui:Matches BuilderPattern="([\s\S]+?)(\d{1,2}:\d{2}\s?[ap]\.?m\.?)\s*(pmmsg-dblcheck|pmmsg-check)?(?=\s*(?:\d{1,2}:\d{2}\s?[ap]\.?m\.?|tail-in|tail-out|$))" DisplayName="Matches conversation and times" sap:VirtualizedContainerService.HintSize="540,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[StrExtractedConversation]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;Advanced&quot;,&quot;OperationValue&quot;:&quot;([\\s\\S]+?)(\\d{1,2}:\\d{2}\\s?[ap]\\.?m\\.?)\\s*(pmmsg-dblcheck|pmmsg-check)?(?=\\s*(?:\\d{1,2}:\\d{2}\\s?[ap]\\.?m\\.?|tail-in|tail-out|$))&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="([\s\S]+?)(\d{1,2}:\d{2}\s?[ap]\.?m\.?)\s*(pmmsg-dblcheck|pmmsg-check)?(?=\s*(?:Edited\s*)?(?:\d{1,2}:\d{2}\s?[ap]\.?m\.?|tail-in|tail-out|$))" RegexOption="IgnoreCase, Compiled" Result="[MatchesResult]" />
+      <ui:ForEach x:TypeArguments="str:Match" CurrentIndex="{x:Null}" DisplayName="For Each Match" sap:VirtualizedContainerService.HintSize="540,1664" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[MatchesResult]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="str:Match">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="str:Match" Name="match" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="504,1506" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="StrDate" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Assign MessageContent" sap:VirtualizedContainerService.HintSize="470,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[MessageContent]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[match.Groups(1).Value]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <If Condition="[MessageContent.Length&gt;8]" sap:VirtualizedContainerService.HintSize="470,1332" sap2010:WorkflowViewState.IdRef="If_4">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,1114" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke WhatsApp_GetConversationDate workflow" sap:VirtualizedContainerService.HintSize="434,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="WhatsApp\WhatsApp_GetConversationDate.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrMessageText">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="MessageContent" />
+                        </InArgument>
+                        <OutArgument x:TypeArguments="x:String" x:Key="out_StrDate">
+                          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="StrExtractedDate" />
+                        </OutArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_24">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[StrConversationDate]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[if(string.IsNullOrEmpty(StrExtractedDate),StrConversationDate,StrExtractedDate)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:IfElseIf DisplayName="Else If - depending on message sender" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="IfElseIf_2">
+                      <ui:IfElseIf.ConditionBlocks>
+                        <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                          <ui:IfElseIfBlock BlockType="If" Condition="[MessageContent.Contains(&quot;tail-in&quot;)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,279" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign DisplayName="Assign MessageType- customer" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageType]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">customer</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="MessageContent tail-in" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageContent]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[MessageContent.Substring(MessageContent.IndexOf("tail-in") + "tail-in".Length).Trim()]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[MessageContent.Contains(&quot;tail-out&quot;)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,279" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign DisplayName="Assign MessageType- bot" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageType]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">bot</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign DisplayName="Assign MessageContent tail-out" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageContent]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[MessageContent.Substring(MessageContent.IndexOf("tail-out") + "tail-out".Length).Trim()]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[MessageContent.Contains(&quot;pmmsg-dblcheck&quot;)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,286" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_22" Text="same type" />
+                                <Assign DisplayName="Assign MessageContent dblcheck" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_29">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageContent]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[MessageContent.Substring(MessageContent.IndexOf("pmmsg-dblcheck") + "pmmsg-dblcheck".Length).Trim()]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="ElseIf" Condition="[MessageContent.Contains(&quot;pmmsg-check&quot;)]">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,286" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_23" Text="same type">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </WriteLine>
+                                <Assign DisplayName="Assign MessageContent check" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageContent]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String">[MessageContent.Substring(MessageContent.IndexOf("pmmsg-check") + "pmmsg-check".Length).Trim()]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                          <ui:IfElseIfBlock BlockType="Else">
+                            <ui:IfElseIfBlock.Then>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,288" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_24" Text="same type">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </WriteLine>
+                                <Assign DisplayName="Assign MessageContent check" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:String">[MessageContent]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(MessageContent.IndexOf(" pm") &gt; 0, 
+    MessageContent.Substring(MessageContent.IndexOf(" pm") + " pm".Length).Trim(), 
+    If(MessageContent.IndexOf(" am") &gt; 0, 
+        MessageContent.Substring(MessageContent.IndexOf(" am") + " am".Length).Trim(), 
+        MessageContent.Trim()
+    )
+)]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:IfElseIfBlock.Then>
+                          </ui:IfElseIfBlock>
+                        </sc:BindingList>
+                      </ui:IfElseIf.ConditionBlocks>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:IfElseIf>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_25" Text="el mensaje es:" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_26" Text="[MessageContent]" />
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_27" Text="[MessageType]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_32">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[MessageTime]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[match.Groups(2).Value]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="WriteLine_28" Text="[StrConversationDate+&quot; &quot;+MessageTime]" />
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Execute_SP_with_parameters workflow" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Database\Execute_SP_with_parameters.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrSPName">
+                          <Literal x:TypeArguments="x:String">Insert_WhatsAppMessage</Literal>
+                        </InArgument>
+                        <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBConnection">
+                          <VisualBasicValue x:TypeArguments="ui:DatabaseConnection" ExpressionText="in_DBConnection" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Customer_id">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_StrCustomerId" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Message_Timestamp">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="StrConversationDate+&quot; &quot;+MessageTime" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Message_Sender">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="MessageType.ToUpper" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_Message_Text">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="split(MessageContent.Replace(&quot;🌟&quot;,STRING.Empty).Replace(&quot;🌍✈️&quot;,STRING.Empty),&quot;… Read more&quot;).First" />
+                        </InArgument>
+                        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dtResponse">
+                          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_Response" />
+                        </OutArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEach>
+      <If Condition="[dt_Response.Rows(0)(&quot;Message_Timestamp&quot;).ToString&gt;in_StrTimeMessageSent and dt_Response.Rows(0)(&quot;Message_Sender&quot;).ToString=&quot;CUSTOMER&quot;]" DisplayName="If - same last message?" sap:VirtualizedContainerService.HintSize="540,712" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,287" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="not out_BooObtainedAnswer" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_20">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[out_BooObtainedAnswer]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="WriteLine_19" Text="had not obtained answer from customer" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,287" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="out_BooObtainedAnswer" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_21">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[out_BooObtainedAnswer]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="obtained an answer from user" />
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:LogMessage DisplayName="Log Message end" sap:VirtualizedContainerService.HintSize="540,115" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Completed WhatsApp_ValidateUserAnswer workflow&quot;]" />
+    </Sequence>
+  </Sequence>
+</Activity>

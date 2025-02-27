@@ -1,0 +1,6 @@
+{
+    "objectWriteTraceId": "string",
+    "properties": {
+        "last_whatsapp_message": "@last_whatsapp_message"
+    }
+}
